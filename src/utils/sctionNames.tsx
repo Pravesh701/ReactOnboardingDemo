@@ -1,0 +1,3 @@
+const ActionNames = {
+    LOADING: 'loading'
+}
