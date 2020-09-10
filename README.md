@@ -1,3 +1,1 @@
-# OnboardingDemo
-# ReactOnboardingDemo
 # ReactOnboardingDemo
