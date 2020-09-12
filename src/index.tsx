@@ -10,6 +10,7 @@ import screens from './utils/screens';
 import fontFamily from './utils/fonts';
 import ForgetPassword from './screens/forgetPassword';
 import SplashScreen from './screens/splash/splash';
+import { normalize } from './utils/dimensions';
 
 const Stack = createStackNavigator();
 
@@ -21,7 +22,8 @@ function OnboardingScreen() {
             },
             headerTintColor: color.white,
             headerTitleStyle: {
-                fontFamily: fontFamily.muliBold
+                fontFamily: fontFamily.muliBold,
+                fontSize: normalize(16)
             },
             headerBackTitleVisible: false
          }} initialRouteName={screens.LOGIN}>
