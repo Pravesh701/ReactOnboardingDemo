@@ -45,7 +45,7 @@ const Login = (props: Props) => {
         constant.showSnackBar('Under Development.')
     };
 
-    const handleSignup = () =>{
+    const handleSignup = () => {
         constant.showSnackBar('Under Development.')
     }
 
@@ -87,7 +87,7 @@ const Login = (props: Props) => {
                     placeholder={'Password'}
                     returnKeyType={'done'}
                     secureTextEntry={showPassword}
-                // onSubmitEditing={submitLogin}
+                    onSubmitEditing={handleLogin}
                 />
                 <Text onPress={handleForgetPassword} style={styles.forgetPass}>Forgot Password?</Text>
                 <TouchableOpacity
@@ -96,8 +96,8 @@ const Login = (props: Props) => {
                     {renderLinearGradient('Login')}
                 </TouchableOpacity>
                 <Text onPress={handleSignup} style={styles.newUser}>
-                    I’m a new user, <Text style = {styles.signUPText}>Sign up</Text>
-            </Text>
+                    I’m a new user, <Text style={styles.signUPText}>Sign up</Text>
+                </Text>
             </ScrollView>
         </View>
     )
@@ -178,7 +178,7 @@ const styles = StyleSheet.create({
         marginTop: vh(128),
         alignSelf: 'center'
     },
-    signUPText:{
+    signUPText: {
         fontFamily: fontFamily.muliBold,
         fontSize: normalize(16),
         color: color.black,
