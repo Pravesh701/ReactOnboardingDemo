@@ -14,7 +14,7 @@ interface Props {
     navigation: any;
 }
 
-const Login = (props: Props) => {
+const SignUp = (props: Props) => {
 
     const [emailVal, setemailVal] = useState('');
     const [passwordVal, setpasswordVal] = useState('');
@@ -37,16 +37,12 @@ const Login = (props: Props) => {
         }
     }
 
-    const handleForgetPassword = () => {
-        props.navigation.navigate(screens.ONBOARDING_SCREENS, { screen: screens.FORGET_PASSWORD });
-    }
-
-    const handleLogin = () => {
+    const handleSignup = () => {
         constant.showSnackBar('Under Development.')
     };
 
-    const handleSignup = () => {
-        props.navigation.navigate(screens.ONBOARDING_SCREENS, { screen: screens.SIGN_UP });
+    const handleLogin = () => {
+        props.navigation.pop();
     }
 
 
@@ -87,23 +83,22 @@ const Login = (props: Props) => {
                     placeholder={'Password'}
                     returnKeyType={'done'}
                     secureTextEntry={showPassword}
-                    onSubmitEditing={handleLogin}
+                    onSubmitEditing={handleSignup}
                 />
-                <Text onPress={handleForgetPassword} style={styles.forgetPass}>Forgot Password?</Text>
                 <TouchableOpacity
-                    onPress={handleLogin}
+                    onPress={handleSignup}
                     style={styles.gradientButton}>
-                    {renderLinearGradient('Login')}
+                    {renderLinearGradient('Sign Up')}
                 </TouchableOpacity>
-                <Text onPress={handleSignup} style={styles.newUser}>
-                    I’m a new user, <Text style={styles.signUPText}>SIGN UP</Text>
+                <Text onPress={handleLogin} style={styles.newUser}>
+                    I’m already a member, <Text style={styles.signUPText}>LOGIN</Text>
                 </Text>
             </ScrollView>
         </View>
     )
 }
 
-export default Login;
+export default SignUp;
 
 const styles = StyleSheet.create({
     container: {
@@ -138,13 +133,6 @@ const styles = StyleSheet.create({
         fontFamily: fontFamily.muliRegular,
         fontSize: normalize(16),
         color: color.black
-    },
-    forgetPass: {
-        fontFamily: fontFamily.muliRegular,
-        fontSize: normalize(12),
-        color: color.black,
-        marginTop: vh(12),
-        alignSelf: 'flex-end'
     },
     gradientButton: {
         marginTop: vh(40),

@@ -5,5 +5,6 @@ export default {
     borderColor: 'rgb(255, 56, 89)',
     endGradientBtn: 'rgb(0, 152, 219)',
     startGradientBtn: 'rgb(29, 86, 152)',
-    btnShadow: 'rgba(0, 97, 210, 0.3)'
+    btnShadow: 'rgba(0, 97, 210, 0.3)',
+    cloudBlue: 'rgb(199, 213, 222)',
 }
