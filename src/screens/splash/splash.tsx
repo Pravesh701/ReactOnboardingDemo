@@ -12,7 +12,7 @@ interface Props {
     navigation: any
 }
 
-export default function SplashScreen({navigation }: Props): ReactElement {
+export default function SplashScreen({ navigation }: Props): ReactElement {
 
     useEffect(() => {
         // navigation.navigate('Details')
@@ -25,23 +25,23 @@ export default function SplashScreen({navigation }: Props): ReactElement {
         //     otherParam: 'anything you want here',
         //   });
 
-    //     <Text>itemId: {JSON.stringify(itemId)}</Text>
-    //   <Text>otherParam: {JSON.stringify(otherParam)}</Text>
+        //     <Text>itemId: {JSON.stringify(itemId)}</Text>
+        //   <Text>otherParam: {JSON.stringify(otherParam)}</Text>
 
-    // navigation.push('Details', {
-    //     itemId: Math.floor(Math.random() * 100),
-    //   })
+        // navigation.push('Details', {
+        //     itemId: Math.floor(Math.random() * 100),
+        //   })
 
-//     <Stack.Screen
-//   name="Details"
-//   component={DetailsScreen}
-//   initialParams={{ itemId: 42 }}
-// />
+        //     <Stack.Screen
+        //   name="Details"
+        //   component={DetailsScreen}
+        //   initialParams={{ itemId: 42 }}
+        // />
 
-// navigation.navigate('Account', {
-//     screen: 'Settings',
-//     params: { user: 'jane' },
-//   });
+        // navigation.navigate('Account', {
+        //     screen: 'Settings',
+        //     params: { user: 'jane' },
+        //   });
 
 
     }, [])

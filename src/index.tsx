@@ -4,8 +4,8 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
 //Custom Imports
-import screens from './src/utils/screens';
-import SplashScreen from './src/screens/splash/splash';
+import screens from './utils/screens';
+import SplashScreen from './screens/splash/splash';
 
 const Stack = createStackNavigator();
 
