@@ -7,6 +7,7 @@ import { View, StyleSheet, Image } from 'react-native'
 //Custom Imports
 import images from '../../utils/images';
 import { DesignHeight, vw, vh } from '../../utils/dimensions';
+import screens from '../../utils/screens';
 
 interface Props {
     navigation: any
@@ -15,35 +16,9 @@ interface Props {
 export default function SplashScreen({ navigation }: Props): ReactElement {
 
     useEffect(() => {
-        // navigation.navigate('Details')
-        // navigation.goBack()
-        // navigation.popToTop()
-
-        /* 1. Navigate to the Details route with params */
-        // navigation.navigate('Details', {
-        //     itemId: 86,
-        //     otherParam: 'anything you want here',
-        //   });
-
-        //     <Text>itemId: {JSON.stringify(itemId)}</Text>
-        //   <Text>otherParam: {JSON.stringify(otherParam)}</Text>
-
-        // navigation.push('Details', {
-        //     itemId: Math.floor(Math.random() * 100),
-        //   })
-
-        //     <Stack.Screen
-        //   name="Details"
-        //   component={DetailsScreen}
-        //   initialParams={{ itemId: 42 }}
-        // />
-
-        // navigation.navigate('Account', {
-        //     screen: 'Settings',
-        //     params: { user: 'jane' },
-        //   });
-
-
+        setTimeout(() => {
+            navigation.navigate(screens.ONBOARDING_SCREENS, { screen: screens.LOGIN });
+        }, 2000);
     }, [])
 
     return (
