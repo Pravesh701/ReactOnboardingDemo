@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import LinearGradient from 'react-native-linear-gradient';
+import AsyncStorage from '@react-native-community/async-storage';
 import { View, StyleSheet, TouchableOpacity, Image, TextInput, Text, ScrollView } from 'react-native';
 
 import color from '../../utils/color';
@@ -8,7 +9,7 @@ import screens from '../../utils/screens';
 import fontFamily from '../../utils/fonts';
 import constant from '../../utils/constants';
 import { vw, vh, normalize } from '../../utils/dimensions';
-
+import { handleValidationEmail, handleValidationPassword } from '../../utils/commonMethods';
 interface Props {
     route: any;
     navigation: any;
@@ -41,8 +42,23 @@ const Login = (props: Props) => {
         props.navigation.navigate(screens.ONBOARDING_SCREENS, { screen: screens.FORGET_PASSWORD });
     }
 
-    const handleLogin = () => {
-        constant.showSnackBar('Under Development.')
+    const handleLogin = async () => {
+        let emailError = handleValidationEmail("email", emailVal),
+            passwordError = handleValidationPassword('password', passwordVal)
+        if (emailError) {
+            constant.showSnackBar(emailError)
+            return
+        } else if (passwordError) {
+            constant.showSnackBar(passwordError)
+            return
+        } else {
+            try {
+                await AsyncStorage.setItem('email', emailVal)
+                props.navigation.navigate(screens.HOME_DRAWER);
+            } catch (e) {
+                console.log('AsyncStorage ', e)
+            }
+        }
     };
 
     const handleSignup = () => {
@@ -92,6 +108,8 @@ const Login = (props: Props) => {
                 <Text onPress={handleForgetPassword} style={styles.forgetPass}>Forgot Password?</Text>
                 <TouchableOpacity
                     onPress={handleLogin}
+                    activeOpacity={0.8}
+                    // disabled = { emailVal === '' && passwordVal === '' }
                     style={styles.gradientButton}>
                     {renderLinearGradient('Login')}
                 </TouchableOpacity>

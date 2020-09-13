@@ -14,13 +14,13 @@ function showSnackBar(title: string, duration: number = Snackbar.LENGTH_LONG) {
     Snackbar.show({
         text: title || "OOPS! Something went wront. Please try again",
         duration: duration,
-        backgroundColor: color.borderColor,
-        textColor: color.black,
+        backgroundColor: color.startGradientBtn,
+        textColor: color.white,
         fontFamily: fontFamily.muliSemiBold,
         action: {
             text: 'Close',
             onPress: () => Snackbar.dismiss(),
-            textColor: color.white
+            textColor: color.black
         }
     });
 }

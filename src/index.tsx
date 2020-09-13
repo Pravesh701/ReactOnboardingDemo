@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import { NavigationContainer } from '@react-navigation/native';
 
 //Custom Imports
 import color from './utils/color';
@@ -8,9 +8,10 @@ import Login from './screens/login';
 import SignUp from './screens/signUp';
 import screens from './utils/screens';
 import fontFamily from './utils/fonts';
-import ForgetPassword from './screens/forgetPassword';
-import SplashScreen from './screens/splash/splash';
 import { normalize } from './utils/dimensions';
+import SplashScreen from './screens/splash/splash';
+import ForgetPassword from './screens/forgetPassword';
+import HomeDrawerStack from './navigation/drawerNavigator';
 
 const Stack = createStackNavigator();
 
@@ -46,6 +47,7 @@ function App() {
             <Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName={screens.SPLASH_SCREEN}>
                 <Stack.Screen name={screens.SPLASH_SCREEN} component={SplashScreen} />
                 <Stack.Screen name={screens.ONBOARDING_SCREENS} component={OnboardingScreen} />
+                <Stack.Screen name={screens.HOME_DRAWER} component={HomeDrawerStack} />
             </Stack.Navigator>
         </NavigationContainer>
     );
