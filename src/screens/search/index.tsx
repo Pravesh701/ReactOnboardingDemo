@@ -7,7 +7,7 @@ import color from '../../utils/color';
 import screens from '../../utils/screens';
 import SearchScreen from './searchScreen';
 import fontFamily from '../../utils/fonts';
-import { NavigationDrawerStructure } from '../../navigation/drawerNavigator';
+import { NavigationDrawerStructure } from '../../utils/navigation/drawerNavigator';
 
 
 interface Props {

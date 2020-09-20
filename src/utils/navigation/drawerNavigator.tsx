@@ -4,13 +4,12 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import { NavigationContainer, getFocusedRouteNameFromRoute } from '@react-navigation/native';
 
 //Custom Imports
-import screens from '../utils/screens';
-import UserProfile from '../screens/profile';
+import screens from '../screens';
 
-import color from '../utils/color';
-import images from '../utils/images';
-import { vh } from '../utils/dimensions';
-import SettingScreenStack from '../screens/settings';
+import color from '../color';
+import images from '../images';
+import { vh } from '../dimensions';
+import SettingScreenStack from '../../screens/settings';
 import MainBottomTabStack from './bottomTabNavigator';
 
 interface Props {

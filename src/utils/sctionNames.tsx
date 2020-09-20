@@ -1,3 +1,0 @@
-const ActionNames = {
-    LOADING: 'loading'
-}

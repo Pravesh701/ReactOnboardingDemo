@@ -16,5 +16,5 @@ export default {
     YOUR_LIBRARY_SCREEN: 'yourLibrary',
     YOUR_LIBRARY_STACK: 'yourLibraryStack',
     PREMIUM_SCREEN:'premiumScreen',
-    PREMIUM_STACK: 'premiumStack'
+    PREMIUM_STACK: 'premiumStack',
 }

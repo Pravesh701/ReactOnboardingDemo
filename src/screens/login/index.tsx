@@ -1,15 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import LinearGradient from 'react-native-linear-gradient';
-import AsyncStorage from '@react-native-community/async-storage';
 import { View, StyleSheet, TouchableOpacity, Image, TextInput, Text, ScrollView } from 'react-native';
 
+//Custom Imports
 import color from '../../utils/color';
 import images from '../../utils/images';
 import screens from '../../utils/screens';
 import fontFamily from '../../utils/fonts';
 import constant from '../../utils/constants';
+import { ReducersModal } from '../../utils/modals';
 import { vw, vh, normalize } from '../../utils/dimensions';
+import { updateUserDataFields, hitLoginAPI } from './action';
 import { handleValidationEmail, handleValidationPassword } from '../../utils/commonMethods';
+
 interface Props {
     route: any;
     navigation: any;
@@ -17,21 +21,26 @@ interface Props {
 
 const Login = (props: Props) => {
 
-    const [emailVal, setemailVal] = useState('');
-    const [passwordVal, setpasswordVal] = useState('');
+    const dispatch = useDispatch();
     const [showPassword, toggleShowPassword] = useState(true);
+    const { email, password } = useSelector((state: ReducersModal) => state.userDataReducer);
+    const { commonLoading } = useSelector((state: ReducersModal) => state.globalLoaderReducer);
 
     //refs
     const emailRef: any = React.createRef();
     const passwordRef: any = React.createRef();
 
+    useEffect(() => {
+        console.log('email', email)
+    }, [true])
+
     const onChangeText = (key: string, value: any) => {
         switch (key) {
             case 'email':
-                setemailVal(value)
+                dispatch(updateUserDataFields('email', value))
                 break;
             case 'password':
-                setpasswordVal(value)
+                dispatch(updateUserDataFields('password', value))
                 break;
             default:
                 break;
@@ -43,8 +52,8 @@ const Login = (props: Props) => {
     }
 
     const handleLogin = async () => {
-        let emailError = handleValidationEmail("email", emailVal),
-            passwordError = handleValidationPassword('password', passwordVal)
+        let emailError = handleValidationEmail("email", email),
+            passwordError = handleValidationPassword('password', password)
         if (emailError) {
             constant.showSnackBar(emailError)
             return
@@ -52,19 +61,15 @@ const Login = (props: Props) => {
             constant.showSnackBar(passwordError)
             return
         } else {
-            try {
-                await AsyncStorage.setItem('email', emailVal)
-                props.navigation.navigate(screens.HOME_DRAWER);
-            } catch (e) {
-                console.log('AsyncStorage ', e)
-            }
+            props.navigation.navigate(screens.HOME_DRAWER);
+            //Call API AUTH methods
+            // dispatch(hitLoginAPI(props.navigation))
         }
     };
 
     const handleSignup = () => {
         props.navigation.navigate(screens.ONBOARDING_SCREENS, { screen: screens.SIGN_UP });
     }
-
 
     function renderLinearGradient(title: string) {
         return (
@@ -87,7 +92,7 @@ const Login = (props: Props) => {
             <ScrollView>
                 <Image resizeMode={'contain'} style={styles.logoImage} source={images.logoImage} />
                 <TextInput
-                    value={emailVal}
+                    value={email}
                     onChangeText={(val: any) => onChangeText('email', val)}
                     style={styles.emailFieldStyle}
                     placeholder={'Email ID'}
@@ -96,7 +101,7 @@ const Login = (props: Props) => {
                     onSubmitEditing={() => passwordRef.current.focus()}
                 />
                 <TextInput
-                    value={passwordVal}
+                    value={password}
                     ref={passwordRef}
                     onChangeText={(val: any) => onChangeText('password', val)}
                     style={styles.passwordFieldStyle}

@@ -3,13 +3,13 @@ import { Image } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 //Custom Imports
-import colors from '../utils/color';
-import images from '../utils/images';
-import screens from '../utils/screens';
-import HomeStack from '../screens/home';
-import SearchStack from '../screens/search';
-import PremiumStack from '../screens/premium';
-import YourLibraryStack from '../screens/yourLibrary';
+import colors from '../color';
+import images from '../images';
+import screens from '../screens';
+import HomeStack from '../../screens/home';
+import SearchStack from '../../screens/search';
+import PremiumStack from '../../screens/premium';
+import YourLibraryStack from '../../screens/yourLibrary';
 
 interface Props {
     route: any;

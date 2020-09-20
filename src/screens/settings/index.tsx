@@ -6,7 +6,7 @@ import color from '../../utils/color';
 import screens from '../../utils/screens';
 import fontFamily from '../../utils/fonts';
 import SettingScreen from './settingScreen';
-import { NavigationDrawerStructure } from '../../navigation/drawerNavigator';
+import { NavigationDrawerStructure } from '../../utils/navigation/drawerNavigator';
 
 interface Props {
     route: any;

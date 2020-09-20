@@ -1,12 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import React, { useState } from 'react';
 import { View, StyleSheet, Text, Image } from 'react-native';
 
 //Custom Imports
 import color from '../../utils/color';
 import images from '../../utils/images';
 import fontFamily from '../../utils/fonts';
+import { ReducersModal } from '../../utils/modals'; 
 import { vh, normalize } from '../../utils/dimensions';
-import AsyncStorage from '@react-native-community/async-storage';
 import ImageBackgroundBlank from '../../components/imageBackgroundBlank';
 
 
@@ -18,27 +19,14 @@ interface Props {
 const HomeScreen = (props: Props) => {
 
     const [emailData, setemailData] = useState('');
-
-    useEffect(() => {
-        getData();
-    }, [emailData])
-
-    const getData = async () => {
-        try {
-            const value = await AsyncStorage.getItem('email')
-            if (value !== null) {
-                setemailData(value)
-            }
-        } catch (e) {
-            console.log('AsyncStorage ', e)
-        }
-    }
+    const { email, password } = useSelector((state: ReducersModal) => state.userDataReducer);
+    const { commonLoading } = useSelector((state: ReducersModal) => state.globalLoaderReducer);
 
     return (
         <View style={styles.container}>
             <ImageBackgroundBlank />
             <Image style={styles.profileImageStyle} source={images.profilePlaceHolderIcon} />
-            <Text style={styles.userEmail}>{emailData === '' ? 'User Email ID' : emailData}</Text>
+            <Text style={styles.userEmail}>{email}</Text>
         </View>
     )
 }
