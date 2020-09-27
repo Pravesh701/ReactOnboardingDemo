@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import LinearGradient from 'react-native-linear-gradient';
-import { View, StyleSheet, TouchableOpacity, Image, TextInput, Text, ScrollView } from 'react-native';
+import { View, StyleSheet, TouchableOpacity, Image, TextInput, Text, ScrollView, BackHandler, Alert } from 'react-native';
 
 //Custom Imports
 import color from '../../utils/color';
@@ -9,9 +9,10 @@ import images from '../../utils/images';
 import screens from '../../utils/screens';
 import fontFamily from '../../utils/fonts';
 import constant from '../../utils/constants';
+import Loader from '../../components/loader';
 import { ReducersModal } from '../../utils/modals';
 import { vw, vh, normalize } from '../../utils/dimensions';
-import { updateUserDataFields, hitLoginAPI } from './action';
+import { updateUserDataFields, signInWithEmailAndPassword } from './action';
 import { handleValidationEmail, handleValidationPassword } from '../../utils/commonMethods';
 
 interface Props {
@@ -31,8 +32,27 @@ const Login = (props: Props) => {
     const passwordRef: any = React.createRef();
 
     useEffect(() => {
-        console.log('email', email)
-    }, [true])
+        BackHandler.addEventListener('hardwareBackPress', backButtonClick);
+        return () => {
+            BackHandler.removeEventListener('hardwareBackPress', backButtonClick);
+        }
+    }, [])
+
+    const backButtonClick = () => {
+        console.log('backButtonClick login')
+        if (props.navigation && props.navigation.goBack) {
+            Alert.alert("Exit", "Are you sure you want to exit?", [
+                {
+                    text: "Cancel",
+                    onPress: () => { },
+                    style: "cancel"
+                },
+                { text: "Exit", onPress: () => BackHandler.exitApp() }
+            ], { cancelable: true });
+            return true;
+        }
+        return false;
+    }
 
     const onChangeText = (key: string, value: any) => {
         switch (key) {
@@ -61,9 +81,7 @@ const Login = (props: Props) => {
             constant.showSnackBar(passwordError)
             return
         } else {
-            props.navigation.navigate(screens.HOME_DRAWER);
-            //Call API AUTH methods
-            // dispatch(hitLoginAPI(props.navigation))
+            dispatch(signInWithEmailAndPassword(props.navigation));
         }
     };
 
@@ -89,6 +107,9 @@ const Login = (props: Props) => {
 
     return (
         <View style={styles.container}>
+            {
+                commonLoading && <Loader isVisible={commonLoading} />
+            }
             <ScrollView>
                 <Image resizeMode={'contain'} style={styles.logoImage} source={images.logoImage} />
                 <TextInput

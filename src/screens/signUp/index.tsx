@@ -1,13 +1,18 @@
 import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import LinearGradient from 'react-native-linear-gradient';
 import { View, StyleSheet, TouchableOpacity, Image, TextInput, Text, ScrollView } from 'react-native';
 
+//Custom Imports
 import color from '../../utils/color';
 import images from '../../utils/images';
-import screens from '../../utils/screens';
 import fontFamily from '../../utils/fonts';
 import constant from '../../utils/constants';
+import Loader from '../../components/loader';
+import { ReducersModal } from '../../utils/modals';
+import { createUserWithEmailAndPassword } from './action';
 import { vw, vh, normalize } from '../../utils/dimensions';
+import { handleValidationEmail, handleValidationPassword } from '../../utils/commonMethods';
 
 interface Props {
     route: any;
@@ -16,9 +21,11 @@ interface Props {
 
 const SignUp = (props: Props) => {
 
+    const dispatch = useDispatch();
     const [emailVal, setemailVal] = useState('');
     const [passwordVal, setpasswordVal] = useState('');
     const [showPassword, toggleShowPassword] = useState(true);
+    const { commonLoading } = useSelector((state: ReducersModal) => state.globalLoaderReducer);
 
     //refs
     const emailRef: any = React.createRef();
@@ -38,7 +45,17 @@ const SignUp = (props: Props) => {
     }
 
     const handleSignup = () => {
-        constant.showSnackBar('Under Development.')
+        let emailError = handleValidationEmail("email", emailVal),
+            passwordError = handleValidationPassword('password', passwordVal)
+        if (emailError) {
+            constant.showSnackBar(emailError)
+            return
+        } else if (passwordError) {
+            constant.showSnackBar(passwordError)
+            return
+        } else {
+           dispatch(createUserWithEmailAndPassword(props.navigation, emailVal, passwordVal));
+        }
     };
 
     const handleLogin = () => {
@@ -64,6 +81,9 @@ const SignUp = (props: Props) => {
 
     return (
         <View style={styles.container}>
+            {
+                commonLoading && <Loader isVisible = {commonLoading} />
+            }
             <ScrollView>
                 <Image resizeMode={'contain'} style={styles.logoImage} source={images.logoImage} />
                 <TextInput
