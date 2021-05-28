@@ -4,9 +4,8 @@ class LoadersModal {
 }
 
 //User Auth Details 
-class UserDataModal {
-    email: string = '';
-    password: string = '';
+class SheMaidModel {
+   date_response: Array<any> = [];
 }
 
 //Internet Check InternetStatusModel
@@ -16,7 +15,7 @@ class InternetStatusModel {
 
 //Main ReducersModal Model
 class ReducersModal {
-    userDataReducer: UserDataModal = new UserDataModal();
+    sheMaidDataReducer: SheMaidModel = new SheMaidModel();
     globalLoaderReducer: LoadersModal = new LoadersModal();
     internetStatusReducer: InternetStatusModel = new InternetStatusModel();
 }
@@ -24,6 +23,6 @@ class ReducersModal {
 export {
     LoadersModal,
     ReducersModal,
-    UserDataModal,
+    SheMaidModel,
     InternetStatusModel
 }

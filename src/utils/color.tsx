@@ -9,5 +9,5 @@ export default {
     background: 'rgb(73, 73, 73)',
     textColor: 'rgb(198, 198, 198)',
     borderColor: 'rgb(65, 65, 65)',
-    // mainBorderColor: 'rgb(65, 65, 65)'
+    buttonBackground: 'rgb(250, 250, 250)',
 }

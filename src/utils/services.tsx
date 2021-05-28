@@ -89,18 +89,7 @@ const getApiCall = (
             }
         });
 };
-
-/**
- * Global API multi purpose handler
- * @param payload
- * @param dropdown
- */
-const handleApiError = (payload: any) => {
-    constant.showSnackBar(payload.payload.data.errors.message)
-};
-
 export default {
     getApiCall,
     postApiCall,
-    handleApiError,
 };

@@ -10,7 +10,7 @@ const deviceType = isIOS ? 1 : 2;
 
 
 //Base RRL
-const DEV_API_URL = "";
+const DEV_API_URL = "http://shemaidapp.demoproducts.in";
 
 const $http: AxiosInstance = axios.create({
     baseURL: DEV_API_URL,

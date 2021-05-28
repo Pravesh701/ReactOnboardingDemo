@@ -1,6 +1,6 @@
 // custom imports
 import ActionNames from '../utils/actionNames';
-import { LoadersModal, UserDataModal, InternetStatusModel } from '../utils/modals';
+import { LoadersModal, InternetStatusModel } from '../utils/modals';
 
 export const globalLoaderReducer = (state: LoadersModal = new LoadersModal(), action: any) => {
     const { payload } = action;
