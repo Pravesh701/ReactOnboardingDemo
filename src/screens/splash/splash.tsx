@@ -3,8 +3,8 @@
  */
 import { useDispatch } from 'react-redux';
 import NetInfo from '@react-native-community/netinfo'
-import React, { ReactElement, useEffect, useState } from 'react'
 import { View, StyleSheet, Image } from 'react-native'
+import React, { ReactElement, useEffect } from 'react'
 
 //Custom Imports
 import images from '../../utils/images';
@@ -17,10 +17,13 @@ interface Props {
 }
 
 export default function SplashScreen({ navigation }: Props): ReactElement {
-
     const dispatch = useDispatch();
+    
     useEffect(() => {
         NetInfo.addEventListener(({ isConnected }) => handleConnectivityChange(isConnected));
+        setTimeout(() => {
+            navigation.navigate(screens.SHE_MAID_SCREENS)
+        }, 200);
     }, [])
 
     /**
