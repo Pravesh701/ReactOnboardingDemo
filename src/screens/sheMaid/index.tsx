@@ -14,6 +14,7 @@ import { hitBookingDateDataAPI } from './action';
 import { ReducersModal } from '../../utils/modals';
 import { FlatList } from 'react-native-gesture-handler';
 import CustomDatePicker from '../../components/CustomDatePicker';
+import Loader from '../../components/loader';
 
 interface Props {
 
@@ -32,6 +33,7 @@ const SheMaid = (props: Props) => {
     const [showModal, setShowModal] = useState(false)
     const [selectDate, setSelectDate] = useState('')
     const { date_response } = useSelector((state: ReducersModal) => state.sheMaidDataReducer);
+    const { commonLoading } = useSelector((state: ReducersModal) => state.globalLoaderReducer);
 
     const onPressPaymentResult = (result: string) => {
         setSelectedPaymentMode(result)
@@ -144,6 +146,7 @@ const SheMaid = (props: Props) => {
                     </View>
                 </Modal>
             </ScrollView>
+            { commonLoading && <Loader isVisible={commonLoading} />}
         </LinearGradient>
     )
 }

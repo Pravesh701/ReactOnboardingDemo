@@ -19,7 +19,7 @@ export default class Loader extends React.PureComponent<LoaderProps> {
     render() {
         return (
             <View style={Styles.container}>
-                <Spinner isVisible={this.props.isVisible} size={80} type={"Circle"} color={Colors.startGradientBtn} />
+                <Spinner isVisible={this.props.isVisible} size={80} type={"Circle"} color={Colors.white} />
             </View>
         );
     }

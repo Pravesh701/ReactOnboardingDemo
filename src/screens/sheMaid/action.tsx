@@ -4,10 +4,9 @@ import endPoint from "../../utils/endpoint";
 import services from "../../utils/services";
 import Strings from "../../utils/strings";
 
-
 const showHideLoader = (isLoading: boolean) => ({
     type: ActionNames.LOADING,
-    payload: { scope: 'logout', isLoading: isLoading }
+    payload: { scope: 'common', isLoading: isLoading }
 });
 export const updateFields = (key: string, value: any) => ({
     type: ActionNames.UPDATE_SHEMAID_DATA,
