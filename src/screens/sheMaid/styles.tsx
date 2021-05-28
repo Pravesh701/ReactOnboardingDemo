@@ -2,8 +2,8 @@ import { StyleSheet } from 'react-native'
 
 //Custom Imports
 import color from '../../utils/color';
-import { normalize, screenHeight, screenWidth, vh, vw } from '../../utils/dimensions';
 import fontFamily from '../../utils/fonts';
+import { normalize, screenHeight, screenWidth, vh, vw } from '../../utils/dimensions';
 
 const styles = StyleSheet.create({
     container: {
@@ -103,27 +103,27 @@ const styles = StyleSheet.create({
         height: vh(20),
         alignSelf: 'center'
     },
-    paymentModes:{
+    paymentModes: {
         color: color.black,
         fontSize: normalize(18),
         fontFamily: fontFamily.muliBold,
         marginTop: vh(10),
         paddingHorizontal: vw(16)
     },
-    searchResultText:{
+    searchResultText: {
         color: color.textColor,
         fontSize: normalize(14),
         fontFamily: fontFamily.muliRegular,
         marginTop: vh(15),
         marginStart: vw(20)
     },
-    closeStyle:{
+    closeStyle: {
         position: 'absolute',
         zIndex: 100,
         top: vh(5),
         end: vw(5)
     },
-    chooseDateListContainer:{
+    chooseDateListContainer: {
         marginStart: vw(20),
         marginTop: vh(10),
         marginBottom: vh(10)

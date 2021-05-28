@@ -1,21 +1,19 @@
-import React, { useState } from 'react'
 import Modal from 'react-native-modal';
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import LinearGradient from 'react-native-linear-gradient';
 import { Text, View, TouchableOpacity, ScrollView, TextInput, Image } from 'react-native'
 
 //Custom Imports
-import color from '../../utils/color';
-import { vh, vw } from '../../utils/dimensions';
-import Strings from '../../utils/strings';
-
-//Custom Imports
 import styles from './styles';
+import color from '../../utils/color';
 import images from '../../utils/images';
+import Strings from '../../utils/strings';
+import { vh, vw } from '../../utils/dimensions';
+import { hitBookingDateDataAPI } from './action';
+import { ReducersModal } from '../../utils/modals';
 import { FlatList } from 'react-native-gesture-handler';
 import CustomDatePicker from '../../components/CustomDatePicker';
-import { ReducersModal } from '../../utils/modals';
-import { useDispatch, useSelector } from 'react-redux';
-import { hitBookingDateDataAPI } from './action';
 
 interface Props {
 
@@ -55,16 +53,14 @@ const SheMaid = (props: Props) => {
     }
 
     const onChangeText = (key: string, value: any) => {
-        console.log('showDatePicker onChangeText', value)
         dispatch(hitBookingDateDataAPI({ date: value }))
         setSelectDate(value)
     }
 
     const renderBookingDate = ({ item, index }: any) => {
-        console.log('renderBookingDate', item)
         return (
-            <View style = {styles.chooseBookingContainer}>
-                <Text style = {styles.chooseBookingText}>{item}</Text>
+            <View style={styles.chooseBookingContainer}>
+                <Text style={styles.chooseBookingText}>{item}</Text>
             </View>
         )
     }
@@ -96,7 +92,7 @@ const SheMaid = (props: Props) => {
                                 horizontal
                                 keyExtractor={(item: any, index: number) => index.toString()}
                                 renderItem={renderBookingDate}
-                                style = {styles.chooseDateListContainer}
+                                style={styles.chooseDateListContainer}
                             />
                             :
                             <Text style={styles.noTimeSlotsAvailable}>{Strings.noTimeSlotsAvailable}</Text>
