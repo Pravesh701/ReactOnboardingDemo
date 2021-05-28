@@ -24,12 +24,3 @@ export const internetStatusReducer = (state: InternetStatusModel = new InternetS
             return { ...state };
     }
 }
-
-export const userDataReducer = (state: UserDataModal = new UserDataModal(), action: any) => {
-    switch (action.type) {
-        case ActionNames.UPDATE_USER_DATA:
-            return { ...state, ...action.payload };
-        default:
-            return state;
-    }
-}

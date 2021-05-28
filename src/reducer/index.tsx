@@ -1,11 +1,10 @@
 import { combineReducers } from 'redux';
 
 //custom imports below
-import { globalLoaderReducer, userDataReducer, internetStatusReducer } from './globalReducers';
+import { globalLoaderReducer, internetStatusReducer } from './globalReducers';
 
 const appReducer = combineReducers({
     globalLoaderReducer,
-    userDataReducer,
     internetStatusReducer
 })
 
